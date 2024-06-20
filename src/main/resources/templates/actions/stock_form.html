@@ -1,0 +1,103 @@
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Client</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: rgb(34, 41, 61);
+            color: #fff;
+        }
+		.card{
+			margin: 10px;
+			padding: 2px;
+			background-color: rgb(50, 62, 85);
+			align-items: center;
+		}
+        .container-custom {
+            width: 80%;
+            margin: auto;
+			background-color: rgb(98, 160, 234, 0.1);
+        }
+        .btn-right {
+            float: right;
+        }
+		.table {
+            background-color: rgb(33, 32, 46);
+            color: rgb(153, 193, 241);
+        }
+        .table th {
+            background-color: rgb(50, 62, 85);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+ <div class="container container-custom mt-5">
+		<div class="card">
+			<h1 class="card-title">Stock Productos</h1>
+		</div>
+		
+        <form th:action="@{/stock/search}" method="get" class="form-inline mb-4">
+            <div class="form-group mr-3">
+                <label for="sucursal" class="mr-2">Sucursal:</label>
+                <select id="sucursal" name="sucursalId" onchange="this.form.submit()" class="form-control">
+                    <option value="">Select Sucursal</option>
+                    <option th:each="sucursal : ${sucursales}"
+                            th:value="${sucursal.idSucursal}"
+                            th:text="${sucursal.nombre}"
+                            th:selected="${sucursal.idSucursal == selectedSucursal}">
+					</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="categoria" class="mr-2">Categoria:</label>
+                <select id="categoria" name="categoriaId" onchange="this.form.submit()" class="form-control">
+                    <option value="">Select Categoria</option>
+                    <option th:each="categoria : ${categorias}"
+                            th:value="${categoria.idCategoriaProducto}"
+                            th:text="${categoria.nombre}"
+                            th:selected="${categoria.idCategoriaProducto == selectedCategoria}"></option>
+                </select>
+            </div>
+        </form>
+        <table th:if="${stocks != null}" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID Sucursal</th>
+					<th>Sucursal</th>
+					<th>Categoría</th>
+					<th>ID Producto</th>
+                    <th>Producto</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+				<tr th:each="stock : ${stocks}">
+				    <td th:text="${stock.idSucursal}">Sucursal ID</td>
+				    <td th:text="${stock.nombreSucursal}">Sucursal</td>
+				    <td th:text="${stock.nombreCategoria}">Categoría</td>
+					<td th:text="${stock.idProducto}">Producto ID</td>
+				    <td th:text="${stock.nombreProducto}">Producto</td>
+				    <td th:text="${stock.stock}">Stock</td>
+				</tr>
+            </tbody>
+        </table>
+        <a href="/home" class="btn btn-secondary mt-3 btn-right">Back to Home</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>  
+		
+		
+		
+		
+		
+		
+		
