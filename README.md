@@ -75,6 +75,31 @@ The project follows a standard Spring Boot structure with additional directories
   - `templates`: Contains Thymeleaf templates for rendering HTML views.
 - `src/test`: Contains test classes.
 
+```
+DeliciaEterna
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com/deliciaeterna
+│   │   │       ├── controller
+│   │   │       ├── entity
+│   │   │       ├── repository
+│   │   │       ├── service
+│   │   │       └── SpringBaseApplication.java
+│   │   ├── resources
+│   │   │   ├── static
+│   │   │   │   └── css
+│   │   │   └── templates
+│   │   │       ├── home
+│   │   │       ├── actions
+│   │   │       └── access-denied.html
+│   └── test
+│       └── java/com/deliciaeterna
+├── .gitignore
+├── README.md
+└── pom.xml
+```
+
 ## Detailed Description
 
 ### Services
